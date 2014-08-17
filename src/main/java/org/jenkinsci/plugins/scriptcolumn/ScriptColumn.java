@@ -7,10 +7,7 @@ import hudson.views.ListViewColumn;
 import hudson.views.ListViewColumnDescriptor;
 import jenkins.model.Jenkins;
 import org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SecureGroovyScript;
-import org.jenkinsci.plugins.scriptsecurity.scripts.ApprovalContext;
 import org.kohsuke.stapler.DataBoundConstructor;
-
-import javax.swing.text.html.ListView;
 
 public class ScriptColumn extends ListViewColumn {
 
@@ -18,18 +15,15 @@ public class ScriptColumn extends ListViewColumn {
 
     private SecureGroovyScript script;
 
-    private boolean sandbox;
-
     @DataBoundConstructor
-    public ScriptColumn(String columnCaption, SecureGroovyScript script, boolean sandbox) {
+    public ScriptColumn(String columnCaption, SecureGroovyScript script) {
         this.columnCaption = columnCaption;
         this.script = script.configuringWithNonKeyItem();
-        this.sandbox = sandbox;
     }
 
     @Override
     public String getColumnCaption() {
-        return columnCaption    ;
+        return columnCaption;
     }
 
     public String getContent(Item item) {
